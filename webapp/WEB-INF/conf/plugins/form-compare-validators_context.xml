@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- DAO -->
+	<bean id="form-compare-validators.operatorDAO"  class="fr.paris.lutece.plugins.form.modules.comparevalidators.business.OperatorDAO" />
+	<bean id="form-compare-validators.ruleDAO"  class="fr.paris.lutece.plugins.form.modules.comparevalidators.business.RuleDAO" />
+	
+	<!-- Validator -->
+	<bean id="form-compare-validators.validator" class="fr.paris.lutece.plugins.form.modules.comparevalidators.service.validator.CompareValidatorsValidator" />
+</beans>

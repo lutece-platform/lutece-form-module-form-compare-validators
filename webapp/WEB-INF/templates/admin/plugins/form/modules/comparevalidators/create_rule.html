@@ -1,0 +1,32 @@
+<div class="content-box">
+	<h2>#i18n{module.form.comparevalidators.createRule.title}</h2>
+	<form method="post" action="jsp/admin/plugins/form/modules/comparevalidators/DoCreateRule.jsp">
+		<p>
+			<label for="id_entry1">#i18n{module.form.comparevalidators.createRule.labelEntry1} * :</label>
+			<select name="id_entry1">
+				<option value="-1"></option>
+				<#list entry_list as entry>
+					<option value="${entry.idEntry}">${entry.idEntry} - ${entry.title}</option>
+				</#list>
+			</select>
+		</p>
+		<p>
+			<label for="id_operator">#i18n{module.form.comparevalidators.createRule.labelOperator} * :</label>
+			<@combo name="id_operator" items=operator_list default_value=-1 />
+		</p>
+		<p>
+			<label for="id_entry2">#i18n{module.form.comparevalidators.createRule.labelEntry2} * :</label>
+			<select name="id_entry2">
+				<option value="-1"></option>
+				<#list entry_list as entry>
+					<option value="${entry.idEntry}">${entry.idEntry} - ${entry.title}</option>
+				</#list>
+			</select>
+		</p>
+		<p>
+			<input type="hidden" name="id_form" value="${id_form}" />
+			<input class="button" type="submit" name="save" value="#i18n{module.form.comparevalidators.createRule.buttonSave}" />
+			<input class="button" type="submit" name="cancel" value="#i18n{module.form.comparevalidators.createRule.buttonCancel}" />
+		</p>
+	</form>
+</div>

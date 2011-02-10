@@ -1,0 +1,74 @@
+<h2>#i18n{module.form.comparevalidators.manageRule.title}</h2>
+
+<form method="post" action="jsp/admin/plugins/form/ManageValidator.jsp">
+    <@pagination paginator = paginator />
+    #i18n{module.form.comparevalidators.manageRule.labelItemsPerPage} :
+    <select name="items_per_page">
+        <#list [ "10" , "20" , "50" , "100" ] as nb>
+            <#if nb_items_per_page = nb>
+            	<option value="${nb}" selected="selected">${nb}</option>
+            <#else>
+            	<option value="${nb}">${nb}</option>
+            </#if>
+        </#list>
+    </select>
+    <input type="hidden" name="id_form" value="${id_form}" />
+    <input class="button" type="submit" value="#i18n{module.form.comparevalidators.manageRule.buttonItemsPerPage}" />
+</form>
+
+<table>
+	<tr>
+		<th>#i18n{module.form.comparevalidators.manageRule.rowEntry1}</th>
+		<th>#i18n{module.form.comparevalidators.manageRule.rowOperator}</th>
+		<th>#i18n{module.form.comparevalidators.manageRule.rowEntry2}</th>
+		<th>#i18n{module.form.comparevalidators.manageRule.rowActions}</th>
+	</tr>
+	<#list rule_list as rule>
+		<tr>
+			<td>
+				${rule.idEntry1}
+				-
+				<#list entry_list as entry>
+					<#if entry.idEntry == rule.idEntry1>
+						${entry.title}
+					</#if>
+				</#list>
+			</td>
+			<td>
+				<#list operator_list as operator>
+					<#if operator.code == rule.idOperator?string>
+						${operator.name}
+					</#if>
+				</#list>
+			</td>
+			<td>
+				${rule.idEntry2}
+				-
+				<#list entry_list as entry>
+					<#if entry.idEntry == rule.idEntry2>
+						${entry.title}
+					</#if>
+				</#list>
+			</td>
+			<td>
+				<#if permission_delete>
+		            <a href="jsp/admin/plugins/form/modules/comparevalidators/ConfirmRemoveRule.jsp?id_form=${id_form}&id_rule=${rule.idRule}">
+		            	<img src="images/admin/skin/actions/delete.png"
+		            		alt="#i18n{module.form.comparevalidators.manageRule.altDelete}"
+		            		title="#i18n{module.form.comparevalidators.manageRule.altDelete}" />
+		            </a>
+		        </#if>
+			</td>
+		</tr>
+	</#list>
+</table>
+
+<br />
+
+<#if permission_create>
+	<form method="post" action="jsp/admin/plugins/form/modules/comparevalidators/CreateRule.jsp?id_form=${id_form}">
+		<p>
+			<input class="button" type="submit" value="#i18n{module.form.comparevalidators.manageRule.buttonCreate}" />
+		</p>
+	</form>
+</#if>
