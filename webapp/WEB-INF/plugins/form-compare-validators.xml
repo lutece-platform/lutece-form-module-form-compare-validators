@@ -3,7 +3,7 @@
     <!-- Plugin informations -->
 	<name>form-compare-validators</name>
 	<class>fr.paris.lutece.plugins.form.modules.comparevalidators.service.CompareValidatorsPlugin</class>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<description>module.form.comparevalidators.module.description</description>
 	<documentation/>
 	<installation/>
