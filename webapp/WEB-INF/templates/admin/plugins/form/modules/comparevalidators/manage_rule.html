@@ -11,7 +11,6 @@
 			</form>
 			</#if>
 			</legend>
-			<div class="well well-small">
 				<@paginationAdmin paginator=paginator combo=1/>
 				<!-- form method="post" class="form-inline" action="jsp/admin/plugins/form/ManageValidator.jsp">
 				#i18n{module.form.comparevalidators.manageRule.labelItemsPerPage} :
@@ -41,7 +40,7 @@
 						<td>${rule.idEntry2} - <#list entry_list as entry><#if entry.idEntry == rule.idEntry2>${entry.title}</#if></#list></td>
 						<td>
 							<#if permission_delete>
-								<a class="btn btn-danger" href="jsp/admin/plugins/form/modules/comparevalidators/ConfirmRemoveRule.jsp?id_form=${id_form}&id_rule=${rule.idRule}" title="#i18n{module.form.comparevalidators.manageRule.altDelete}">
+								<a class="btn btn-small btn-danger" href="jsp/admin/plugins/form/modules/comparevalidators/ConfirmRemoveRule.jsp?id_form=${id_form}&id_rule=${rule.idRule}" title="#i18n{module.form.comparevalidators.manageRule.altDelete}">
 									<i class="icon-trash icon-white"></i>
 								</a>
 							</#if>
@@ -49,7 +48,6 @@
 					</tr>
 				</#list>
 				</table>
-			</div>
 		</fieldset>	
 	</div>
 </div>

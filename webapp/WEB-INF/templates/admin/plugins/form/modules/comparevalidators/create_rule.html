@@ -2,24 +2,36 @@
 	<div class="span12">
 		<fieldset>
 		<legend>#i18n{module.form.comparevalidators.createRule.title}</legend>
-			<form method="post" action="jsp/admin/plugins/form/modules/comparevalidators/DoCreateRule.jsp">
+			<form class="form-horizontal" method="post" action="jsp/admin/plugins/form/modules/comparevalidators/DoCreateRule.jsp">
 			<input type="hidden" name="id_form" value="${id_form}" />
-			<label for="id_entry1">#i18n{module.form.comparevalidators.createRule.labelEntry1} *</label>
-			<select name="id_entry1">
-				<option value="-1"></option>
-				<#list entry_list as entry>
-					<option value="${entry.idEntry}">${entry.idEntry} - ${entry.title}</option>
-				</#list>
-			</select>
-			<label for="id_operator">#i18n{module.form.comparevalidators.createRule.labelOperator} *</label>
-			<@combo name="id_operator" items=operator_list default_value=-1 />
-			<label for="id_entry2">#i18n{module.form.comparevalidators.createRule.labelEntry2} *</label>
-			<select name="id_entry2">
-				<option value="-1"></option>
-				<#list entry_list as entry>
-					<option value="${entry.idEntry}">${entry.idEntry} - ${entry.title}</option>
-				</#list>
-			</select>
+			<div class="control-group">
+			<label class="control-label"  for="id_entry1">#i18n{module.form.comparevalidators.createRule.labelEntry1} *</label>
+				<div class="controls">
+				<select name="id_entry1" class="input-normal">
+					<option value="-1"></option>
+					<#list entry_list as entry>
+						<option value="${entry.idEntry}">${entry.idEntry} - ${entry.title}</option>
+					</#list>
+				</select>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="id_operator">#i18n{module.form.comparevalidators.createRule.labelOperator} *</label>
+				<div class="controls">
+					<@comboWithParams name="id_operator" default_value="-1" additionalParameters=" class=\"input-mini\"" items=operator_list  />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label"  for="id_entry2">#i18n{module.form.comparevalidators.createRule.labelEntry2} *</label>
+				<div class="controls">
+					<select name="id_entry2" class="input-normal">
+						<option value="-1"></option>
+						<#list entry_list as entry>
+							<option value="${entry.idEntry}">${entry.idEntry} - ${entry.title}</option>
+						</#list>
+					</select>
+				</div>
+			</div>
 			<div class="form-actions">
 				<button class="btn btn-small btn-primary" type="submit" name="save">
 					<i class="icon-ok icon-white"></i>&nbsp;#i18n{module.form.comparevalidators.createRule.buttonSave}
