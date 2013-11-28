@@ -62,13 +62,13 @@ import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.util.html.HtmlTemplate;
 import fr.paris.lutece.util.html.Paginator;
 
-import org.apache.commons.lang.StringUtils;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang.StringUtils;
 
 
 /**
@@ -104,7 +104,7 @@ public class CompareValidatorsValidator extends Validator
      * Returns the unique instance of the plugin
      * @return the unique instance of the plugin
      */
-    private static Plugin getPlugin(  )
+    private static Plugin getPlugin( )
     {
         if ( _plugin == null )
         {
@@ -115,11 +115,11 @@ public class CompareValidatorsValidator extends Validator
     }
 
     /**
-    * Returns the validator interface
-    * @param request {@link HttpServletRequest}
-    * @param nIdForm the form id
-    * @return the validator interface
-    */
+     * Returns the validator interface
+     * @param request {@link HttpServletRequest}
+     * @param nIdForm the form id
+     * @return the validator interface
+     */
     public String getUI( HttpServletRequest request, int nIdForm )
     {
         _nDefaultItemsPerPage = AppPropertiesService.getPropertyInt( PROPERTY_ITEMS_PER_PAGE, 10 );
@@ -127,24 +127,23 @@ public class CompareValidatorsValidator extends Validator
         _nItemsPerPage = Paginator.getItemsPerPage( request, Paginator.PARAMETER_ITEMS_PER_PAGE, _nItemsPerPage,
                 _nDefaultItemsPerPage );
 
-        List<Rule> listRule = RuleHome.findRulesByForm( nIdForm, getPlugin(  ) );
+        List<Rule> listRule = RuleHome.findRulesByForm( nIdForm, getPlugin( ) );
 
-        Paginator<Rule> paginator = new Paginator<Rule>( listRule, _nItemsPerPage,
-                AppPathService.getBaseUrl( request ) + JSP_MANAGE_VALIDATOR, Paginator.PARAMETER_PAGE_INDEX,
-                _strCurrentPageIndex );
+        Paginator<Rule> paginator = new Paginator<Rule>( listRule, _nItemsPerPage, AppPathService.getBaseUrl( request )
+                + JSP_MANAGE_VALIDATOR, Paginator.PARAMETER_PAGE_INDEX, _strCurrentPageIndex );
 
-        Map<String, Object> model = new HashMap<String, Object>(  );
+        Map<String, Object> model = new HashMap<String, Object>( );
         model.put( MARK_PAGINATOR, paginator );
         model.put( MARK_NB_ITEMS_PER_PAGE, Integer.toString( _nItemsPerPage ) );
-        model.put( MARK_RULE_LIST, paginator.getPageItems(  ) );
+        model.put( MARK_RULE_LIST, paginator.getPageItems( ) );
         model.put( CompareValidatorsConstants.MARK_ID_FORM, nIdForm );
         model.put( CompareValidatorsConstants.MARK_ENTRY_LIST, CompareValidatorsService.getAuthorizedEntries( nIdForm ) );
-        model.put( CompareValidatorsConstants.MARK_OPERATOR_LIST, OperatorHome.findAll( getPlugin(  ) ) );
+        model.put( CompareValidatorsConstants.MARK_OPERATOR_LIST, OperatorHome.findAll( getPlugin( ) ) );
         addPermissions( request, model );
 
-        HtmlTemplate template = AppTemplateService.getTemplate( TEMPLATE_MANAGE_RULE, request.getLocale(  ), model );
+        HtmlTemplate template = AppTemplateService.getTemplate( TEMPLATE_MANAGE_RULE, request.getLocale( ), model );
 
-        return template.getHtml(  );
+        return template.getHtml( );
     }
 
     /**
@@ -158,7 +157,7 @@ public class CompareValidatorsValidator extends Validator
         boolean bPermissionCreate = false;
 
         if ( RBACService.isAuthorized( Rule.RESOURCE_TYPE, RBAC.WILDCARD_RESOURCES_ID,
-                    CompareValidatorsResourceIdService.PERMISSION_CREATE, AdminUserService.getAdminUser( request ) ) )
+                CompareValidatorsResourceIdService.PERMISSION_CREATE, AdminUserService.getAdminUser( request ) ) )
         {
             bPermissionCreate = true;
         }
@@ -169,7 +168,7 @@ public class CompareValidatorsValidator extends Validator
         boolean bPermissionDelete = false;
 
         if ( RBACService.isAuthorized( Rule.RESOURCE_TYPE, RBAC.WILDCARD_RESOURCES_ID,
-                    CompareValidatorsResourceIdService.PERMISSION_DELETE, AdminUserService.getAdminUser( request ) ) )
+                CompareValidatorsResourceIdService.PERMISSION_DELETE, AdminUserService.getAdminUser( request ) ) )
         {
             bPermissionDelete = true;
         }
@@ -178,13 +177,14 @@ public class CompareValidatorsValidator extends Validator
     }
 
     /**
-    * Checks if the validator is associated with the form
-    * @param nIdForm the form id
-    * @return true if the validator is associated with the form, otherwise false
-    */
+     * Checks if the validator is associated with the form
+     * @param nIdForm the form id
+     * @return true if the validator is associated with the form, otherwise
+     *         false
+     */
     public boolean isAssociatedWithForm( int nIdForm )
     {
-        return ( RuleHome.findRulesByForm( nIdForm, getPlugin(  ) ).size(  ) > 0 );
+        return ( RuleHome.findRulesByForm( nIdForm, getPlugin( ) ).size( ) > 0 );
     }
 
     /**
@@ -193,9 +193,9 @@ public class CompareValidatorsValidator extends Validator
      */
     public void removeAssociationsWithForm( int nIdForm )
     {
-        for ( Rule rule : RuleHome.findRulesByForm( nIdForm, getPlugin(  ) ) )
+        for ( Rule rule : RuleHome.findRulesByForm( nIdForm, getPlugin( ) ) )
         {
-            RuleHome.remove( rule.getIdRule(  ), getPlugin(  ) );
+            RuleHome.remove( rule.getIdRule( ), getPlugin( ) );
         }
     }
 
@@ -207,24 +207,24 @@ public class CompareValidatorsValidator extends Validator
      * @throws SiteMessageException throws SiteMessageException
      */
     public void validateForm( HttpServletRequest request, FormSubmit formSubmit, Plugin formPlugin )
-        throws SiteMessageException
+            throws SiteMessageException
     {
-        List<Rule> listRules = RuleHome.findRulesByForm( formSubmit.getForm(  ).getIdForm(  ), getPlugin(  ) );
+        List<Rule> listRules = RuleHome.findRulesByForm( formSubmit.getForm( ).getIdForm( ), getPlugin( ) );
         Operator operator;
         IComparator comparator;
 
         // Saves the response values into the rules
-        for ( Response response : formSubmit.getListResponse(  ) )
+        for ( Response response : formSubmit.getListResponse( ) )
         {
             for ( Rule rule : listRules )
             {
-                if ( response.getEntry(  ).getIdEntry(  ) == rule.getIdEntry1(  ) )
+                if ( response.getEntry( ).getIdEntry( ) == rule.getIdEntry1( ) )
                 {
-                    rule.setValueEntry1( response.getValueResponse(  ) );
+                    rule.setValueEntry1( response.getResponseValue( ) );
                 }
-                else if ( response.getEntry(  ).getIdEntry(  ) == rule.getIdEntry2(  ) )
+                else if ( response.getEntry( ).getIdEntry( ) == rule.getIdEntry2( ) )
                 {
-                    rule.setValueEntry2( response.getValueResponse(  ) );
+                    rule.setValueEntry2( response.getResponseValue( ) );
                 }
             }
         }
@@ -233,38 +233,38 @@ public class CompareValidatorsValidator extends Validator
         for ( Rule rule : listRules )
         {
             // Gets the current operator
-            operator = OperatorHome.findByPrimaryKey( rule.getIdOperator(  ), getPlugin(  ) );
+            operator = OperatorHome.findByPrimaryKey( rule.getIdOperator( ), getPlugin( ) );
 
-            if ( StringUtils.isNotBlank( operator.getClassName(  ) ) )
+            if ( StringUtils.isNotBlank( operator.getClassName( ) ) )
             {
                 try
                 {
-                    // Instanciates the comparator
-                    comparator = (IComparator) Class.forName( operator.getClassName(  ) ).newInstance(  );
+                    // Instantiates the comparator
+                    comparator = (IComparator) Class.forName( operator.getClassName( ) ).newInstance( );
 
                     // Compares the response values
-                    if ( !comparator.compare( rule.getValueEntry1(  ), rule.getValueEntry2(  ) ) )
+                    if ( !comparator.compare( rule.getValueEntry1( ), rule.getValueEntry2( ) ) )
                     {
-                        IEntry entry1 = EntryHome.findByPrimaryKey( rule.getIdEntry1(  ), formPlugin );
-                        IEntry entry2 = EntryHome.findByPrimaryKey( rule.getIdEntry2(  ), formPlugin );
+                        IEntry entry1 = EntryHome.findByPrimaryKey( rule.getIdEntry1( ) );
+                        IEntry entry2 = EntryHome.findByPrimaryKey( rule.getIdEntry2( ) );
 
-                        Object[] messageArgs = { entry1.getTitle(  ), entry2.getTitle(  ) };
+                        Object[] messageArgs = { entry1.getTitle( ), entry2.getTitle( ) };
 
-                        SiteMessageService.setMessage( request, comparator.getMessage(  ), messageArgs,
-                            SiteMessage.TYPE_STOP );
+                        SiteMessageService.setMessage( request, comparator.getMessage( ), messageArgs,
+                                SiteMessage.TYPE_STOP );
                     }
                 }
                 catch ( InstantiationException e )
                 {
-                    AppLogService.error( e.getMessage(  ), e );
+                    AppLogService.error( e.getMessage( ), e );
                 }
                 catch ( IllegalAccessException e )
                 {
-                    AppLogService.error( e.getMessage(  ), e );
+                    AppLogService.error( e.getMessage( ), e );
                 }
                 catch ( ClassNotFoundException e )
                 {
-                    AppLogService.error( e.getMessage(  ), e );
+                    AppLogService.error( e.getMessage( ), e );
                 }
             }
         }

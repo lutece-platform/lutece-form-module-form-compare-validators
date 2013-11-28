@@ -33,7 +33,7 @@
  */
 package fr.paris.lutece.plugins.form.modules.comparevalidators.business.comparator;
 
-import java.util.Arrays;
+import org.apache.commons.lang.StringUtils;
 
 
 /**
@@ -44,21 +44,21 @@ public class ComparatorEqual implements IComparator
     private static final String MESSAGE_COMPARATOR_EQUAL = "module.form.comparevalidators.message.comparator.equal";
 
     /**
-    * Checks if the values are equals
-    * @param byValue1 the first value
-    * @param byValue2 the second value
-    * @return true if the values are equals, otherwise false
-    */
-    public boolean compare( byte[] byValue1, byte[] byValue2 )
+     * Checks if the values are equals
+     * @param byValue1 the first value
+     * @param byValue2 the second value
+     * @return true if the values are equals, otherwise false
+     */
+    public boolean compare( String strValue1, String strValue2 )
     {
-        return Arrays.equals( byValue1, byValue2 );
+        return StringUtils.equals( strValue1, strValue2 );
     }
 
     /**
      * Gets the I18n message key
      * @return the I18n message key
      */
-    public String getMessage(  )
+    public String getMessage( )
     {
         return MESSAGE_COMPARATOR_EQUAL;
     }

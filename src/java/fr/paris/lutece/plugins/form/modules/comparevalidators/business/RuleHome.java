@@ -33,7 +33,6 @@
  */
 package fr.paris.lutece.plugins.form.modules.comparevalidators.business;
 
-import fr.paris.lutece.plugins.form.modules.comparevalidators.service.CompareValidatorsPlugin;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 
@@ -46,19 +45,18 @@ import java.util.List;
 public final class RuleHome
 {
     // Static variable pointed at the DAO instance
-    private static IRuleDAO _dao = (IRuleDAO) SpringContextService.getPluginBean( CompareValidatorsPlugin.PLUGIN_NAME,
-            "form-compare-validators.ruleDAO" );
+    private static IRuleDAO _dao = SpringContextService.getBean( "form-compare-validators.ruleDAO" );
 
     /**
      * Private constructor - this class does not need to be instantiated
      */
-    private RuleHome(  )
+    private RuleHome( )
     {
     }
 
     /**
      * Creates a new instance of rule
-     *
+     * 
      * @param rule The instance of rule which contains the informations to store
      * @param plugin The plugin
      * @return The instance of rule which has been created with its primary key
@@ -72,7 +70,7 @@ public final class RuleHome
 
     /**
      * Removes the rule whose identifier is specified in parameter
-     *
+     * 
      * @param nKey The primary key of the rule to remove
      * @param plugin The plugin
      */
@@ -83,7 +81,7 @@ public final class RuleHome
 
     /**
      * Finds all rules for a given form identifier
-     *
+     * 
      * @param nIdForm the form identifier
      * @param plugin The plugin
      * @return the referenceList which contains the found rules

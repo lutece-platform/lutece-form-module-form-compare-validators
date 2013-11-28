@@ -41,11 +41,11 @@ public interface IComparator
 {
     /**
      * Checks if the values are equals
-     * @param byValue1 the first value
-     * @param byValue2 the second value
+     * @param strValue1 the first value
+     * @param strValue2 the second value
      * @return true if the values are equals, otherwise false
      */
-    boolean compare( byte[] byValue1, byte[] byValue2 );
+    boolean compare( String strValue1, String strValue2 );
 
     /**
      * Gets the I18n message key

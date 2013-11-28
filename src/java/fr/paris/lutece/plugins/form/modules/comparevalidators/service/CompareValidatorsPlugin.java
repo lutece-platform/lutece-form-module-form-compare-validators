@@ -41,5 +41,8 @@ import fr.paris.lutece.portal.service.plugin.PluginDefaultImplementation;
  */
 public class CompareValidatorsPlugin extends PluginDefaultImplementation
 {
+    /**
+     * Name of the form compare validators plugin
+     */
     public static final String PLUGIN_NAME = "form-compare-validators";
 }

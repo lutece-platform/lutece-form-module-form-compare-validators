@@ -43,10 +43,10 @@ import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 
-import org.apache.commons.lang.StringUtils;
-
 import java.util.ArrayList;
 import java.util.Collection;
+
+import org.apache.commons.lang.StringUtils;
 
 
 /**
@@ -63,32 +63,32 @@ public final class CompareValidatorsService
     /**
      * Private constructor
      */
-    private CompareValidatorsService(  )
+    private CompareValidatorsService( )
     {
     }
 
     /**
      * Loads data from all authorized entries for the specified form
-     *
+     * 
      * @param nIdForm the form identifier
      * @return the list which contains entries
      */
     public static Collection<IEntry> getAuthorizedEntries( int nIdForm )
     {
         // Gets authorized entry types identifiers
-        Collection<Integer> listIdEntryType = getAuthorizedIdEntryTypes(  );
+        Collection<Integer> listIdEntryType = getAuthorizedIdEntryTypes( );
 
         // Filter : form identifier and no conditional question
-        EntryFilter entryFilter = new EntryFilter(  );
+        EntryFilter entryFilter = new EntryFilter( );
         entryFilter.setFieldDependNull( EntryFilter.FILTER_TRUE );
         entryFilter.setIdForm( nIdForm );
 
         // Filter : authorized entry types
-        Collection<IEntry> listEntry = new ArrayList<IEntry>(  );
+        Collection<IEntry> listEntry = new ArrayList<IEntry>( );
 
-        for ( IEntry entry : EntryHome.getEntryList( entryFilter, PLUGIN_FORM ) )
+        for ( IEntry entry : EntryHome.getEntryList( entryFilter ) )
         {
-            if ( listIdEntryType.contains( entry.getEntryType(  ).getIdType(  ) ) )
+            if ( listIdEntryType.contains( entry.getEntryType( ).getIdType( ) ) )
             {
                 listEntry.add( entry );
             }
@@ -99,12 +99,12 @@ public final class CompareValidatorsService
 
     /**
      * Gets authorized entry types identifiers
-     *
+     * 
      * @return the list which contains all authorized entry types identifiers
      */
-    private static Collection<Integer> getAuthorizedIdEntryTypes(  )
+    private static Collection<Integer> getAuthorizedIdEntryTypes( )
     {
-        Collection<Integer> listIdEntryType = new ArrayList<Integer>(  );
+        Collection<Integer> listIdEntryType = new ArrayList<Integer>( );
 
         String strListIdEntryType = AppPropertiesService.getProperty( PROPERTY_ENTRY_TYPE_AUTHORIZED );
 
@@ -118,7 +118,7 @@ public final class CompareValidatorsService
                 }
                 catch ( NumberFormatException nfe )
                 {
-                    AppLogService.error( nfe.getLocalizedMessage(  ), nfe );
+                    AppLogService.error( nfe.getLocalizedMessage( ), nfe );
                 }
             }
         }

@@ -33,7 +33,6 @@
  */
 package fr.paris.lutece.plugins.form.modules.comparevalidators.business;
 
-
 /**
  * Rule
  */
@@ -43,16 +42,16 @@ public class Rule
     private int _nIdRule;
     private int _nIdForm;
     private int _nIdEntry1;
-    private byte[] _byValueEntry1;
+    private String _strValueEntry1;
     private int _nIdEntry2;
-    private byte[] _byValueEntry2;
+    private String _strValueEntry2;
     private int _nIdOperator;
 
     /**
      * Gets the rule identifier
      * @return the rule identifier
      */
-    public int getIdRule(  )
+    public int getIdRule( )
     {
         return _nIdRule;
     }
@@ -70,7 +69,7 @@ public class Rule
      * Gets the form identifier
      * @return the form identifier
      */
-    public int getIdForm(  )
+    public int getIdForm( )
     {
         return _nIdForm;
     }
@@ -88,7 +87,7 @@ public class Rule
      * Gets the first entry identifier
      * @return the first entry identifier
      */
-    public int getIdEntry1(  )
+    public int getIdEntry1( )
     {
         return _nIdEntry1;
     }
@@ -106,25 +105,25 @@ public class Rule
      * Gets the response value for the first entry
      * @return the response value for the first entry
      */
-    public byte[] getValueEntry1(  )
+    public String getValueEntry1( )
     {
-        return _byValueEntry1.clone(  );
+        return _strValueEntry1;
     }
 
     /**
      * Sets the response value for the first entry
-     * @param byValueEntry1 the response value for the first entry
+     * @param strValueEntry1 the response value for the first entry
      */
-    public void setValueEntry1( byte[] byValueEntry1 )
+    public void setValueEntry1( String strValueEntry1 )
     {
-        _byValueEntry1 = byValueEntry1.clone(  );
+        _strValueEntry1 = strValueEntry1;
     }
 
     /**
      * Gets the second entry identifier
      * @return the second entry identifier
      */
-    public int getIdEntry2(  )
+    public int getIdEntry2( )
     {
         return _nIdEntry2;
     }
@@ -142,25 +141,25 @@ public class Rule
      * Gets the response value for the second entry
      * @return the response value for the second entry
      */
-    public byte[] getValueEntry2(  )
+    public String getValueEntry2( )
     {
-        return _byValueEntry2.clone(  );
+        return _strValueEntry2;
     }
 
     /**
      * Sets the response value for the second entry
-     * @param byValueEntry2 the response value for the second entry
+     * @param strValueEntry2 the response value for the second entry
      */
-    public void setValueEntry2( byte[] byValueEntry2 )
+    public void setValueEntry2( String strValueEntry2 )
     {
-        _byValueEntry2 = byValueEntry2.clone(  );
+        _strValueEntry2 = strValueEntry2;
     }
 
     /**
      * Gets the operator identifier
      * @return the operator identifier
      */
-    public int getIdOperator(  )
+    public int getIdOperator( )
     {
         return _nIdOperator;
     }

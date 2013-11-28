@@ -55,12 +55,12 @@ import fr.paris.lutece.util.ReferenceList;
 import fr.paris.lutece.util.html.HtmlTemplate;
 import fr.paris.lutece.util.url.UrlItem;
 
-import org.apache.commons.lang.StringUtils;
-
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang.StringUtils;
 
 
 /**
@@ -68,6 +68,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class CompareValidatorsJspBean extends FormJspBean
 {
+    private static final long serialVersionUID = -652644894450987751L;
     // Parameters
     private static final String PARAMETER_ID_FORM = "id_form";
     private static final String PARAMETER_ID_RULE = "id_rule";
@@ -97,14 +98,14 @@ public class CompareValidatorsJspBean extends FormJspBean
 
     /**
      * Gets the rule creation page
-     *
+     * 
      * @param request The HTTP request
      * @return The rule creation page
      */
     public String getCreateRule( HttpServletRequest request )
     {
         if ( !RBACService.isAuthorized( Rule.RESOURCE_TYPE, RBAC.WILDCARD_RESOURCES_ID,
-                    CompareValidatorsResourceIdService.PERMISSION_CREATE, getUser(  ) ) )
+                CompareValidatorsResourceIdService.PERMISSION_CREATE, getUser( ) ) )
         {
             return getManageValidator( request );
         }
@@ -114,24 +115,24 @@ public class CompareValidatorsJspBean extends FormJspBean
         int nIdForm = CompareValidatorsUtils.stringToInt( request.getParameter( PARAMETER_ID_FORM ) );
 
         ReferenceList refListOperator = OperatorHome.findAll( PLUGIN );
-        ReferenceItem refItem = new ReferenceItem(  );
+        ReferenceItem refItem = new ReferenceItem( );
         refItem.setCode( String.valueOf( -1 ) );
         refItem.setName( CompareValidatorsConstants.EMPTY_STRING );
         refListOperator.add( 0, refItem );
 
-        Map<String, Object> model = new HashMap<String, Object>(  );
+        Map<String, Object> model = new HashMap<String, Object>( );
         model.put( CompareValidatorsConstants.MARK_ID_FORM, nIdForm );
         model.put( CompareValidatorsConstants.MARK_ENTRY_LIST, CompareValidatorsService.getAuthorizedEntries( nIdForm ) );
         model.put( CompareValidatorsConstants.MARK_OPERATOR_LIST, refListOperator );
 
-        HtmlTemplate template = AppTemplateService.getTemplate( TEMPLATE_CREATE_RULE, getLocale(  ), model );
+        HtmlTemplate template = AppTemplateService.getTemplate( TEMPLATE_CREATE_RULE, getLocale( ), model );
 
-        return getAdminPage( template.getHtml(  ) );
+        return getAdminPage( template.getHtml( ) );
     }
 
     /**
      * Performs the rule creation
-     *
+     * 
      * @param request The HTTP request
      * @return The URL to go after performing the action
      */
@@ -140,7 +141,7 @@ public class CompareValidatorsJspBean extends FormJspBean
         int nIdForm = CompareValidatorsUtils.stringToInt( request.getParameter( PARAMETER_ID_FORM ) );
 
         if ( !RBACService.isAuthorized( Rule.RESOURCE_TYPE, RBAC.WILDCARD_RESOURCES_ID,
-                    CompareValidatorsResourceIdService.PERMISSION_CREATE, getUser(  ) ) )
+                CompareValidatorsResourceIdService.PERMISSION_CREATE, getUser( ) ) )
         {
             return getJspManageValidator( request, nIdForm );
         }
@@ -151,7 +152,7 @@ public class CompareValidatorsJspBean extends FormJspBean
             return getJspManageValidator( request, nIdForm );
         }
 
-        Rule rule = new Rule(  );
+        Rule rule = new Rule( );
 
         // Get fields
         String strError = getFields( request, nIdForm, rule );
@@ -168,7 +169,7 @@ public class CompareValidatorsJspBean extends FormJspBean
 
     /**
      * Gets the form fields
-     *
+     * 
      * @param request The HTTP request
      * @param nIdForm The form identifier
      * @param rule The rule
@@ -197,10 +198,10 @@ public class CompareValidatorsJspBean extends FormJspBean
 
         if ( !strFieldError.equals( CompareValidatorsConstants.EMPTY_STRING ) )
         {
-            Object[] tabRequiredFields = { I18nService.getLocalizedString( strFieldError, getLocale(  ) ) };
+            Object[] tabRequiredFields = { I18nService.getLocalizedString( strFieldError, getLocale( ) ) };
 
             return AdminMessageService.getMessageUrl( request, MESSAGE_MANDATORY_FIELD, tabRequiredFields,
-                AdminMessage.TYPE_STOP );
+                    AdminMessage.TYPE_STOP );
         }
 
         // Entries may not be identical
@@ -212,11 +213,11 @@ public class CompareValidatorsJspBean extends FormJspBean
         // Checks if a rule already exists for these entries
         for ( Rule currentRule : RuleHome.findRulesByForm( nIdForm, PLUGIN ) )
         {
-            if ( ( ( currentRule.getIdEntry1(  ) == nIdEntry1 ) && ( currentRule.getIdEntry2(  ) == nIdEntry2 ) ) ||
-                    ( ( currentRule.getIdEntry1(  ) == nIdEntry2 ) && ( currentRule.getIdEntry2(  ) == nIdEntry1 ) ) )
+            if ( ( ( currentRule.getIdEntry1( ) == nIdEntry1 ) && ( currentRule.getIdEntry2( ) == nIdEntry2 ) )
+                    || ( ( currentRule.getIdEntry1( ) == nIdEntry2 ) && ( currentRule.getIdEntry2( ) == nIdEntry1 ) ) )
             {
                 return AdminMessageService.getMessageUrl( request, MESSAGE_ERROR_RULE_ALREADY_EXISTS,
-                    AdminMessage.TYPE_STOP );
+                        AdminMessage.TYPE_STOP );
             }
         }
 
@@ -239,7 +240,7 @@ public class CompareValidatorsJspBean extends FormJspBean
         int nIdForm = CompareValidatorsUtils.stringToInt( request.getParameter( PARAMETER_ID_FORM ) );
 
         if ( !RBACService.isAuthorized( Rule.RESOURCE_TYPE, RBAC.WILDCARD_RESOURCES_ID,
-                    CompareValidatorsResourceIdService.PERMISSION_DELETE, getUser(  ) ) )
+                CompareValidatorsResourceIdService.PERMISSION_DELETE, getUser( ) ) )
         {
             return getJspManageValidator( request, nIdForm );
         }
@@ -250,13 +251,13 @@ public class CompareValidatorsJspBean extends FormJspBean
         url.addParameter( PARAMETER_ID_FORM, nIdForm );
         url.addParameter( PARAMETER_ID_RULE, nIdRule );
 
-        return AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_RULE, url.getUrl(  ),
-            AdminMessage.TYPE_CONFIRMATION );
+        return AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_RULE, url.getUrl( ),
+                AdminMessage.TYPE_CONFIRMATION );
     }
 
     /**
      * Performs the rule removal
-     *
+     * 
      * @param request The HTTP request
      * @return The URL to go after performing the action
      */
@@ -265,7 +266,7 @@ public class CompareValidatorsJspBean extends FormJspBean
         int nIdForm = CompareValidatorsUtils.stringToInt( request.getParameter( PARAMETER_ID_FORM ) );
 
         if ( !RBACService.isAuthorized( Rule.RESOURCE_TYPE, RBAC.WILDCARD_RESOURCES_ID,
-                    CompareValidatorsResourceIdService.PERMISSION_DELETE, getUser(  ) ) )
+                CompareValidatorsResourceIdService.PERMISSION_DELETE, getUser( ) ) )
         {
             return getJspManageValidator( request, nIdForm );
         }
