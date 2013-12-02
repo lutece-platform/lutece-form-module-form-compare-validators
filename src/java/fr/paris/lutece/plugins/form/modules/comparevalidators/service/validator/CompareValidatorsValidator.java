@@ -45,7 +45,7 @@ import fr.paris.lutece.plugins.form.modules.comparevalidators.service.CompareVal
 import fr.paris.lutece.plugins.form.modules.comparevalidators.util.CompareValidatorsConstants;
 import fr.paris.lutece.plugins.form.service.validator.Validator;
 import fr.paris.lutece.plugins.genericattributes.business.EntryHome;
-import fr.paris.lutece.plugins.genericattributes.business.IEntry;
+import fr.paris.lutece.plugins.genericattributes.business.Entry;
 import fr.paris.lutece.plugins.genericattributes.business.Response;
 import fr.paris.lutece.portal.business.rbac.RBAC;
 import fr.paris.lutece.portal.service.admin.AdminUserService;
@@ -245,8 +245,8 @@ public class CompareValidatorsValidator extends Validator
                     // Compares the response values
                     if ( !comparator.compare( rule.getValueEntry1( ), rule.getValueEntry2( ) ) )
                     {
-                        IEntry entry1 = EntryHome.findByPrimaryKey( rule.getIdEntry1( ) );
-                        IEntry entry2 = EntryHome.findByPrimaryKey( rule.getIdEntry2( ) );
+                        Entry entry1 = EntryHome.findByPrimaryKey( rule.getIdEntry1( ) );
+                        Entry entry2 = EntryHome.findByPrimaryKey( rule.getIdEntry2( ) );
 
                         Object[] messageArgs = { entry1.getTitle( ), entry2.getTitle( ) };
 

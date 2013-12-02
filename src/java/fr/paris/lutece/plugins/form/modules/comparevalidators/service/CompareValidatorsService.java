@@ -38,7 +38,7 @@ import fr.paris.lutece.plugins.form.modules.comparevalidators.util.CompareValida
 import fr.paris.lutece.plugins.form.service.FormPlugin;
 import fr.paris.lutece.plugins.genericattributes.business.EntryFilter;
 import fr.paris.lutece.plugins.genericattributes.business.EntryHome;
-import fr.paris.lutece.plugins.genericattributes.business.IEntry;
+import fr.paris.lutece.plugins.genericattributes.business.Entry;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.util.AppLogService;
@@ -74,7 +74,7 @@ public final class CompareValidatorsService
      * @param nIdForm the form identifier
      * @return the list which contains entries
      */
-    public static Collection<IEntry> getAuthorizedEntries( int nIdForm )
+    public static Collection<Entry> getAuthorizedEntries( int nIdForm )
     {
         // Gets authorized entry types identifiers
         Collection<Integer> listIdEntryType = getAuthorizedIdEntryTypes( );
@@ -86,9 +86,9 @@ public final class CompareValidatorsService
         entryFilter.setResourceType( Form.RESOURCE_TYPE );
 
         // Filter : authorized entry types
-        Collection<IEntry> listEntry = new ArrayList<IEntry>( );
+        Collection<Entry> listEntry = new ArrayList<Entry>( );
 
-        for ( IEntry entry : EntryHome.getEntryList( entryFilter ) )
+        for ( Entry entry : EntryHome.getEntryList( entryFilter ) )
         {
             if ( listIdEntryType.contains( entry.getEntryType( ).getIdType( ) ) )
             {
