@@ -33,10 +33,7 @@
  */
 package fr.paris.lutece.plugins.form.modules.comparevalidators.service.validator;
 
-import fr.paris.lutece.plugins.form.business.EntryHome;
 import fr.paris.lutece.plugins.form.business.FormSubmit;
-import fr.paris.lutece.plugins.form.business.IEntry;
-import fr.paris.lutece.plugins.form.business.Response;
 import fr.paris.lutece.plugins.form.modules.comparevalidators.business.Operator;
 import fr.paris.lutece.plugins.form.modules.comparevalidators.business.OperatorHome;
 import fr.paris.lutece.plugins.form.modules.comparevalidators.business.Rule;
@@ -47,6 +44,9 @@ import fr.paris.lutece.plugins.form.modules.comparevalidators.service.CompareVal
 import fr.paris.lutece.plugins.form.modules.comparevalidators.service.CompareValidatorsService;
 import fr.paris.lutece.plugins.form.modules.comparevalidators.util.CompareValidatorsConstants;
 import fr.paris.lutece.plugins.form.service.validator.Validator;
+import fr.paris.lutece.plugins.genericattributes.business.EntryHome;
+import fr.paris.lutece.plugins.genericattributes.business.IEntry;
+import fr.paris.lutece.plugins.genericattributes.business.Response;
 import fr.paris.lutece.portal.business.rbac.RBAC;
 import fr.paris.lutece.portal.service.admin.AdminUserService;
 import fr.paris.lutece.portal.service.message.SiteMessage;

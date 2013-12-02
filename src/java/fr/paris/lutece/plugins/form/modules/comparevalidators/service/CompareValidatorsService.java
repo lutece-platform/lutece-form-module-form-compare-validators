@@ -33,11 +33,12 @@
  */
 package fr.paris.lutece.plugins.form.modules.comparevalidators.service;
 
-import fr.paris.lutece.plugins.form.business.EntryFilter;
-import fr.paris.lutece.plugins.form.business.EntryHome;
-import fr.paris.lutece.plugins.form.business.IEntry;
+import fr.paris.lutece.plugins.form.business.Form;
 import fr.paris.lutece.plugins.form.modules.comparevalidators.util.CompareValidatorsConstants;
 import fr.paris.lutece.plugins.form.service.FormPlugin;
+import fr.paris.lutece.plugins.genericattributes.business.EntryFilter;
+import fr.paris.lutece.plugins.genericattributes.business.EntryHome;
+import fr.paris.lutece.plugins.genericattributes.business.IEntry;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.util.AppLogService;
@@ -81,7 +82,8 @@ public final class CompareValidatorsService
         // Filter : form identifier and no conditional question
         EntryFilter entryFilter = new EntryFilter( );
         entryFilter.setFieldDependNull( EntryFilter.FILTER_TRUE );
-        entryFilter.setIdForm( nIdForm );
+        entryFilter.setIdResource( nIdForm );
+        entryFilter.setResourceType( Form.RESOURCE_TYPE );
 
         // Filter : authorized entry types
         Collection<IEntry> listEntry = new ArrayList<IEntry>( );
