@@ -1,3 +1,6 @@
+DROP TABLE IF EXISTS form_compare_validators_operator;
+DROP TABLE IF EXISTS form_compare_validators_rule;
+
 --
 -- table structure for form_compare_validators_operator
 --
