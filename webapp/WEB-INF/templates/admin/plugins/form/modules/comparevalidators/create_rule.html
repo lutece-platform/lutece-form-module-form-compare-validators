@@ -1,46 +1,38 @@
-<div class="row-fluid">
-	<div class="span12">
-		<fieldset>
-		<legend>#i18n{module.form.comparevalidators.createRule.title}</legend>
-			<form class="form-horizontal" method="post" action="jsp/admin/plugins/form/modules/comparevalidators/DoCreateRule.jsp">
-			<input type="hidden" name="id_form" value="${id_form}" />
-			<div class="control-group">
-			<label class="control-label"  for="id_entry1">#i18n{module.form.comparevalidators.createRule.labelEntry1} *</label>
-				<div class="controls">
-				<select name="id_entry1" class="input-normal">
-					<option value="-1"></option>
-					<#list entry_list as entry>
-						<option value="${entry.idEntry}">${entry.idEntry} - ${entry.title}</option>
-					</#list>
-				</select>
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="id_operator">#i18n{module.form.comparevalidators.createRule.labelOperator} *</label>
-				<div class="controls">
-					<@comboWithParams name="id_operator" default_value="-1" additionalParameters=" class=\"input-mini\"" items=operator_list  />
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label"  for="id_entry2">#i18n{module.form.comparevalidators.createRule.labelEntry2} *</label>
-				<div class="controls">
-					<select name="id_entry2" class="input-normal">
-						<option value="-1"></option>
-						<#list entry_list as entry>
-							<option value="${entry.idEntry}">${entry.idEntry} - ${entry.title}</option>
-						</#list>
-					</select>
-				</div>
-			</div>
-			<div class="form-actions">
-				<button class="btn btn-small btn-primary" type="submit" name="save">
-					<i class="icon-ok icon-white"></i>&nbsp;#i18n{module.form.comparevalidators.createRule.buttonSave}
-				</button>
-				<a class="btn btn-small" href="jsp/admin/plugins/form/ManageValidator.jsp?id_form=${id_form}" name="cancel">
-					<i class="icon-remove-circle"></i>&nbsp;#i18n{module.form.comparevalidators.createRule.buttonCancel}
-				</a>
-			</div>
-			</form>
-		</fieldset>
-	</div>
-</div>
+<@row>
+  <@columns>
+    <@box color='primary'>
+			<@boxHeader title='#i18n{module.form.comparevalidators.createRule.title}' />
+			<@boxBody>
+				<@tform class="form-horizontal" method="post" action="jsp/admin/plugins/form/modules/comparevalidators/DoCreateRule.jsp">
+					<fieldset>
+						<legend class="sr-only">#i18n{module.form.comparevalidators.createRule.title}</legend>
+						<input type="hidden" name="id_form" value="${id_form}" />
+						<@formGroup labelFor='id_entry1' labelKey='#i18n{module.form.comparevalidators.createRule.labelEntry1}' mandatory=true>
+							<@select name='id_entry1' id='id_entry1'>
+								<option value="-1"></option>
+								<#list entry_list as entry>
+									<option value="${entry.idEntry}">${entry.idEntry} - ${entry.title}</option>
+								</#list>
+							</@select>
+						</@formGroup>
+						<@formGroup labelFor='id_operator' labelKey='#i18n{module.form.comparevalidators.createRule.labelOperator}' mandatory=true>
+							<@select name='id_operator' id='id_operator' default_value='-1' items=operator_list />
+						</@formGroup>
+						<@formGroup labelFor='id_entry2' labelKey='#i18n{module.form.comparevalidators.createRule.labelEntry2}' mandatory=true>
+							<@select name='id_entry2' id='id_entry2'>
+								<option value="-1"></option>
+								<#list entry_list as entry>
+									<option value="${entry.idEntry}">${entry.idEntry} - ${entry.title}</option>
+								</#list>
+							</@select>
+						</@formGroup>
+						<@formGroup>
+							<@button type='submit' name='save' buttonIcon='save' title='#i18n{module.form.comparevalidators.createRule.buttonSave}' size='' />
+							<@aButton href='jsp/admin/plugins/form/ManageValidator.jsp?id_form=${id_form}' name='cancel' buttonIcon='remove' title='#i18n{module.form.comparevalidators.createRule.buttonCancel}' size='' color='btn-secondary' />
+						</@formGroup>
+					</fieldset>
+				</@tform>
+			</@boxBody>
+    </@box>
+  </@columns>
+</@row>
