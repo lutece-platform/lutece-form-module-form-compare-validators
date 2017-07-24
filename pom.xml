@@ -9,7 +9,7 @@
     <groupId>fr.paris.lutece.plugins</groupId>
     <artifactId>module-form-compare-validators</artifactId>
     <packaging>lutece-plugin</packaging>
-    <version>2.0.2-SNAPSHOT</version>
+    <version>2.0.2</version>
     <name>Lutece form compare validators module</name>
     <repositories>
         <repository>
@@ -47,5 +47,6 @@
         <connection>scm:git:https://github.com/lutece-platform/lutece-form-module-form-compare-validators.git</connection>
         <developerConnection>scm:git:https://github.com/lutece-platform/lutece-form-module-form-compare-validators.git</developerConnection>
         <url>https://github.com/lutece-platform/lutece-form-module-form-compare-validators.git</url>
-    </scm>
+      <tag>lutece-form-module-form-compare-validators-2.0.2</tag>
+  </scm>
 </project>
